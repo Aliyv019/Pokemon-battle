@@ -343,7 +343,7 @@ for (let i = 0; i < pokemons.length; i++) {
 }
 
 select_btn.addEventListener('click',()=>{
-    pokemon_select.style.display='none'
+    pokemon_select.remove()
     pokemon_game.style.display='flex'
     console.log(selected_pokemons);
     const stats1=document.querySelector('#player1')
@@ -368,7 +368,7 @@ select_btn.addEventListener('click',()=>{
     stats2.querySelectorAll('p')[3].textContent=pokemons[pokemon2].name
     stats2.querySelector('img').src=`./assets/Pokemon_dataset/${pokemons[pokemon2].name.toLocaleLowerCase()}.png`
 
-    
+
     
 })
 function indexfinder(pokemon_name){
