@@ -327,11 +327,11 @@ for (let i = 0; i < pokemons.length; i++) {
         if (element.style.border === "2px solid red") {
             element.style.border = "none"
             playerselect--
-            selected_pokemons = selected_pokemons.filter((src) => src !== element.querySelector('img').src.slice(45).slice(0,-4))
+            selected_pokemons = selected_pokemons.filter((src) => src !== element.querySelector('img').src.slice(65).slice(0,-4))
         } else if (playerselect < 2) {
             element.style.border = "2px solid red"
             playerselect++
-            selected_pokemons.push(element.querySelector('img').src.slice(45).slice(0,-4))
+            selected_pokemons.push(element.querySelector('img').src.slice(65).slice(0,-4))
         }
         if(playerselect==2){
             select_btn.style.visibility='visible'
