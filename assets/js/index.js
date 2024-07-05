@@ -351,10 +351,12 @@ select_btn.addEventListener('click',()=>{
     const hp1=stats1.querySelectorAll('p')[0]
     const atk1=stats1.querySelectorAll('p')[1]
     const def1=stats1.querySelectorAll('p')[2]
+    const type1=stats1.querySelectorAll('p')[3]
+    type1.textContent=`TYPE:${pokemon1.type.toUpperCase()}`
     hp1.textContent=`HP:${pokemon1.hp*20+100}`
     atk1.textContent=`ATK:${pokemon1.attack*10+10}`
     def1.textContent=`DEF:${pokemon1.defense*5+10}`
-    stats1.querySelectorAll('p')[3].textContent=pokemon1.name
+    stats1.querySelectorAll('p')[4].textContent=pokemon1.name
     stats1.querySelector('img').src=`./assets/Pokemon_dataset/${pokemon1.name.toLocaleLowerCase()}.png`
 
     const stats2=document.querySelector('#player2')
@@ -362,10 +364,12 @@ select_btn.addEventListener('click',()=>{
     const hp2=stats2.querySelectorAll('p')[0]
     const atk2=stats2.querySelectorAll('p')[1]
     const def2=stats2.querySelectorAll('p')[2]
+    const type2=stats2.querySelectorAll('p')[3]
+    type2.textContent=`TYPE:${pokemon2.type.toUpperCase()}`
     hp2.textContent=`HP:${pokemon2.hp*20+100}`
     atk2.textContent=`ATK:${pokemon2.attack*10+10}`
     def2.textContent=`DEF:${pokemon2.defense*5+10}`
-    stats2.querySelectorAll('p')[3].textContent=pokemon2.name
+    stats2.querySelectorAll('p')[4].textContent=pokemon2.name
     stats2.querySelector('img').src=`./assets/Pokemon_dataset/${pokemon2.name.toLocaleLowerCase()}.png`
 
     const opp_stats1=document.querySelector('#opponent1')
@@ -373,10 +377,12 @@ select_btn.addEventListener('click',()=>{
     const opp_hp1=opp_stats1.querySelectorAll('p')[0]
     const opp_atk1=opp_stats1.querySelectorAll('p')[1]
     const opp_def1=opp_stats1.querySelectorAll('p')[2]
+    const opp_type1=opp_stats1.querySelectorAll('p')[3]
+    opp_type1.textContent=`TYPE:${opp_pokemon1.type.toUpperCase()}`
     opp_hp1.textContent=`HP:${opp_pokemon1.hp*20+100}`
     opp_atk1.textContent=`ATK:${opp_pokemon1.attack*10+10}`
     opp_def1.textContent=`DEF:${opp_pokemon1.defense*5+10}`
-    opp_stats1.querySelectorAll('p')[3].textContent=opp_pokemon1.name
+    opp_stats1.querySelectorAll('p')[4].textContent=opp_pokemon1.name
     opp_stats1.querySelector('img').src=`./assets/Pokemon_dataset/${opp_pokemon1.name.toLocaleLowerCase()}.png`
 
     const opp_stats2=document.querySelector('#opponent2')
@@ -384,10 +390,12 @@ select_btn.addEventListener('click',()=>{
     const opp_hp2=opp_stats2.querySelectorAll('p')[0]
     const opp_atk2=opp_stats2.querySelectorAll('p')[1]
     const opp_def2=opp_stats2.querySelectorAll('p')[2]
+    const opp_type2=opp_stats2.querySelectorAll('p')[3]
+    opp_type2.textContent=`TYPE:${opp_pokemon2.type.toUpperCase()}`
     opp_hp2.textContent=`HP:${opp_pokemon2.hp*20+100}`
     opp_atk2.textContent=`ATK:${opp_pokemon2.attack*10+10}`
     opp_def2.textContent=`DEF:${opp_pokemon2.defense*5+10}`
-    opp_stats2.querySelectorAll('p')[3].textContent=opp_pokemon2.name
+    opp_stats2.querySelectorAll('p')[4].textContent=opp_pokemon2.name
     opp_stats2.querySelector('img').src=`./assets/Pokemon_dataset/${opp_pokemon2.name.toLocaleLowerCase()}.png`
 
 
