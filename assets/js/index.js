@@ -351,22 +351,22 @@ select_btn.addEventListener('click',()=>{
     const hp1=stats1.querySelectorAll('p')[0]
     const atk1=stats1.querySelectorAll('p')[1]
     const def1=stats1.querySelectorAll('p')[2]
-    hp1.textContent=`HP:${pokemons[pokemon1].hp*20+100}`
-    atk1.textContent=`ATK:${pokemons[pokemon1].attack*10+10}`
-    def1.textContent=`DEF:${pokemons[pokemon1].defense*5+10}`
-    stats1.querySelectorAll('p')[3].textContent=pokemons[pokemon1].name
-    stats1.querySelector('img').src=`./assets/Pokemon_dataset/${pokemons[pokemon1].name.toLocaleLowerCase()}.png`
+    hp1.textContent=`HP:${pokemon1.hp*20+100}`
+    atk1.textContent=`ATK:${pokemon1.attack*10+10}`
+    def1.textContent=`DEF:${pokemon1.defense*5+10}`
+    stats1.querySelectorAll('p')[3].textContent=pokemon1.name
+    stats1.querySelector('img').src=`./assets/Pokemon_dataset/${pokemon1.name.toLocaleLowerCase()}.png`
 
     const stats2=document.querySelector('#player2')
     let pokemon2=indexfinder(selected_pokemons[1])
     const hp2=stats2.querySelectorAll('p')[0]
     const atk2=stats2.querySelectorAll('p')[1]
     const def2=stats2.querySelectorAll('p')[2]
-    hp2.textContent=`HP:${pokemons[pokemon2].hp*20+100}`
-    atk2.textContent=`ATK:${pokemons[pokemon2].attack*10+10}`
-    def2.textContent=`DEF:${pokemons[pokemon2].defense*5+10}`
-    stats2.querySelectorAll('p')[3].textContent=pokemons[pokemon2].name
-    stats2.querySelector('img').src=`./assets/Pokemon_dataset/${pokemons[pokemon2].name.toLocaleLowerCase()}.png`
+    hp2.textContent=`HP:${pokemon2.hp*20+100}`
+    atk2.textContent=`ATK:${pokemon2.attack*10+10}`
+    def2.textContent=`DEF:${pokemon2.defense*5+10}`
+    stats2.querySelectorAll('p')[3].textContent=pokemon2.name
+    stats2.querySelector('img').src=`./assets/Pokemon_dataset/${pokemon2.name.toLocaleLowerCase()}.png`
 
     const opp_stats1=document.querySelector('#opponent1')
     let opp_pokemon1=opp_pokemon_finder()
@@ -396,7 +396,7 @@ select_btn.addEventListener('click',()=>{
 function indexfinder(pokemon_name){
     for (let i = 0; i < pokemons.length; i++) {
         if (pokemon_name==pokemons[i].name.toLocaleLowerCase()){
-            return i
+            return pokemons[i]
         }
     }
 }
