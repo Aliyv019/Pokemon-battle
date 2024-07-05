@@ -42,7 +42,7 @@ li img{
 }
 .pokemon_game{
     width: 100%;
-    display: flex;
+    display: none;
     flex-direction: row;
     justify-content: space-between;
     padding: 50px;
