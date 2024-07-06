@@ -327,11 +327,11 @@ for (let i = 0; i < pokemons.length; i++) {
         if (element.style.border === "2px solid red") {
             element.style.border = "none"
             playerselect--
-            selected_pokemons = selected_pokemons.filter((src) => src !== element.querySelector('img').src.slice(65).slice(0,-4))
+            selected_pokemons = selected_pokemons.filter((src) => src !== element.querySelector('img').src.slice(45).slice(0,-4))
         } else if (playerselect < 2) {
             element.style.border = "2px solid red"
             playerselect++
-            selected_pokemons.push(element.querySelector('img').src.slice(65).slice(0,-4))
+            selected_pokemons.push(element.querySelector('img').src.slice(45).slice(0,-4))
         }
         if(playerselect==2){
             select_btn.style.visibility='visible'
@@ -341,6 +341,7 @@ for (let i = 0; i < pokemons.length; i++) {
         }
     })
 }
+const fight_btn=document.querySelector('.fight')
 
 select_btn.addEventListener('click',()=>{
     pokemon_select.remove()
@@ -355,7 +356,7 @@ select_btn.addEventListener('click',()=>{
     type1.textContent=`TYPE:${pokemon1.type.toUpperCase()}`
     hp1.textContent=`HP:${pokemon1.hp*20+100}`
     atk1.textContent=`ATK:${pokemon1.attack*10+10}`
-    def1.textContent=`DEF:${pokemon1.defense*5+10}`
+    def1.textContent=`DEF:${pokemon1.defense*2+0}`
     stats1.querySelectorAll('p')[4].textContent=pokemon1.name
     stats1.querySelector('img').src=`./assets/Pokemon_dataset/${pokemon1.name.toLocaleLowerCase()}.png`
 
@@ -368,7 +369,7 @@ select_btn.addEventListener('click',()=>{
     type2.textContent=`TYPE:${pokemon2.type.toUpperCase()}`
     hp2.textContent=`HP:${pokemon2.hp*20+100}`
     atk2.textContent=`ATK:${pokemon2.attack*10+10}`
-    def2.textContent=`DEF:${pokemon2.defense*5+10}`
+    def2.textContent=`DEF:${pokemon2.defense*2+0}`
     stats2.querySelectorAll('p')[4].textContent=pokemon2.name
     stats2.querySelector('img').src=`./assets/Pokemon_dataset/${pokemon2.name.toLocaleLowerCase()}.png`
 
@@ -381,7 +382,7 @@ select_btn.addEventListener('click',()=>{
     opp_type1.textContent=`TYPE:${opp_pokemon1.type.toUpperCase()}`
     opp_hp1.textContent=`HP:${opp_pokemon1.hp*20+100}`
     opp_atk1.textContent=`ATK:${opp_pokemon1.attack*10+10}`
-    opp_def1.textContent=`DEF:${opp_pokemon1.defense*5+10}`
+    opp_def1.textContent=`DEF:${opp_pokemon1.defense*2+0}`
     opp_stats1.querySelectorAll('p')[4].textContent=opp_pokemon1.name
     opp_stats1.querySelector('img').src=`./assets/Pokemon_dataset/${opp_pokemon1.name.toLocaleLowerCase()}.png`
 
@@ -394,12 +395,1840 @@ select_btn.addEventListener('click',()=>{
     opp_type2.textContent=`TYPE:${opp_pokemon2.type.toUpperCase()}`
     opp_hp2.textContent=`HP:${opp_pokemon2.hp*20+100}`
     opp_atk2.textContent=`ATK:${opp_pokemon2.attack*10+10}`
-    opp_def2.textContent=`DEF:${opp_pokemon2.defense*5+10}`
+    opp_def2.textContent=`DEF:${opp_pokemon2.defense*2+0}`
     opp_stats2.querySelectorAll('p')[4].textContent=opp_pokemon2.name
     opp_stats2.querySelector('img').src=`./assets/Pokemon_dataset/${opp_pokemon2.name.toLocaleLowerCase()}.png`
 
+    fight_btn.addEventListener('click',()=>{
+        if(hp1.textContent.slice(3)>0 && opp_hp1.textContent.slice(3)>0){
+            if(pokemon1.type=="normal"){
+                if(opp_pokemon1.type=="rock"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)/2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="ghost"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)}`
+                }
+                else if(opp_pokemon1.type=="steel"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)/2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else{
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4))+parseInt(opp_def1.textContent.slice(4))}`
+                }
+            }
+            else if(pokemon1.type=="fire"){
+                if(opp_pokemon1.type=="fire"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)/2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="water"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)/2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="rock"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)/2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="dragon"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)/2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="grass"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)*2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="ice"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)*2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="bug"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)*2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="steel"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)*2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else{
+                        opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4))+parseInt(opp_def1.textContent.slice(4))}`
+                }
+            }
+            else if(pokemon1.type=="water"){
+                if(opp_pokemon1.type=="water"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)/2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="grass"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)/2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="dragon"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)/2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="fire"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)*2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="ground"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)*2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="rock"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)*2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else{
+                        opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4))+parseInt(opp_def1.textContent.slice(4))}`
+                }
+            }
+            else if(pokemon1.type=="grass"){
+                if(opp_pokemon1.type=="fire"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)/2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="grass"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)/2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="poison"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)/2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="flying"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)/2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="bug"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)/2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="dragon"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)/2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="steel"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)/2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="water"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)*2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="ground"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)*2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="rock"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)*2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else{
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4))+parseInt(opp_def1.textContent.slice(4))}`
+                }
+            }
+            else if(pokemon1.type=="electric"){
+                if(opp_pokemon1.type=="grass"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)/2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="electric"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)/2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="dragon"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)/2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="water"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)*2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="flying"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)*2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="ground"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)}`
+                }
+                else{
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4))+parseInt(opp_def1.textContent.slice(4))}`
+                }
+            }
+            else if(pokemon1.type=="ice"){
+                if(opp_pokemon1.type=="fire"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)/2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="water"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)/2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="ice"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)/2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="steel"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)/2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="grass"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)*2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="ground"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)*2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="flying"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)*2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="dragon"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)*2)+parseInt(opp_def1.textContent.slice(4))}`
+                } 
+                else{
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4))+parseInt(opp_def1.textContent.slice(4))}`
+                }
+            }
+            else if(pokemon1.type=="fighting"){
+                if(opp_pokemon1.type=="poison"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)/2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="flying"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)/2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="psychic"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)/2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="bug"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)/2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="fairy"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)/2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="normal"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)*2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="ice"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)*2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="rock"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)*2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="dark"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)*2)+parseInt(opp_def1.textContent.slice(4))}`
+                } 
+                else if(opp_pokemon1.type=="steel"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)*2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="ghost"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)}`
+                }
+                else{
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4))+parseInt(opp_def1.textContent.slice(4))}`
+                }
+            }
+            else if(pokemon1.type=="poison"){
+                if(opp_pokemon1.type=="poison"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)/2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="ground"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)/2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="rock"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)/2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="ghost"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)/2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="grass"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)*2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="fairy"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)*2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="steel"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)}`
+                }
+                else{
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4))+parseInt(opp_def1.textContent.slice(4))}`
+                }
+            }
+            else if(pokemon1.type=="ground"){
+                if(opp_pokemon1.type=="grass"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)/2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="bug"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)/2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="fire"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)*2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="electric"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)*2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="poison"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)*2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="rock"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)*2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="steel"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)*2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="flying"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)}`
+                }
+                else{
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4))+parseInt(opp_def1.textContent.slice(4))}`
+                }
+            }
+            else if(pokemon1.type=="flying"){
+                if(opp_pokemon1.type=="electric"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)/2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="rock"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)/2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="steel"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)/2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="grass"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)*2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="fighting"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)*2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="bug"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)*2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else{
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4))+parseInt(opp_def1.textContent.slice(4))}`
+                }
+            }
+            else if(pokemon1.type=="psychic"){
+                if(opp_pokemon1.type=="fighting"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)/2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="poison"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)/2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="psychic"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)*2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="steel"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)*2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="dark"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)}`
+                }
+                else{
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4))+parseInt(opp_def1.textContent.slice(4))}`
+                }
+            }
+            else if(pokemon1.type=="bug"){
+                if(opp_pokemon1.type=="fire"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)/2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="fighting"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)/2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="poison"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)/2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="flying"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)/2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="ghost"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)/2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="steel"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)/2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="fairy"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)/2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="grass"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)*2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="dark"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)*2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="psychic"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)*2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else{
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4))+parseInt(opp_def1.textContent.slice(4))}`
+                }
+            }
+            else if(pokemon1.type=="rock"){
+                if(opp_pokemon1.type=="fighting"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)/2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="ground"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)/2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="steel"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)/2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="bug"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)*2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="fire"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)*2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="ice"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)*2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="flying"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)*2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else{
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4))+parseInt(opp_def1.textContent.slice(4))}`
+                }
+            }
+            else if(pokemon1.type=="ghost"){
+                if(opp_pokemon1.type=="dark"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)/2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="psychic"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)*2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="ghost"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)*2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="normal"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)}`
+                }
+                else{
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4))+parseInt(opp_def1.textContent.slice(4))}`
+                }
+            }
+            else if(pokemon1.type=="dragon"){
+                if(opp_pokemon1.type=="steel"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)/2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="dragon"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)*2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="fairy"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)}`
+                }
+                else{
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4))+parseInt(opp_def1.textContent.slice(4))}`
+                }
+            }
+            else if(pokemon1.type=="dark"){
+                if(opp_pokemon1.type=="fighting"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)/2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="dark"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)/2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="fairy"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)/2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="ghost"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)*2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="psychic"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)*2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else{
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4))+parseInt(opp_def1.textContent.slice(4))}`
+                }
+            }
+            else if(pokemon1.type=="steel"){
+                if(opp_pokemon1.type=="fire"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)/2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="water"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)/2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="electric"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)/2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="steel"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)/2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="ice"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)*2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="rock"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)*2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="fairy"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)*2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else{
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4))+parseInt(opp_def1.textContent.slice(4))}`
+                }
+            }
+            else if(pokemon1.type=="fairy"){
+                if(opp_pokemon1.type=="fire"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)/2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="poison"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)/2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="steel"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)/2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="fighting"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)*2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="dragon"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)*2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else if(opp_pokemon1.type=="dark"){
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4)*2)+parseInt(opp_def1.textContent.slice(4))}`
+                }
+                else{
+                    opp_hp1.textContent=`HP:${opp_hp1.textContent.slice(3)-(atk1.textContent.slice(4))+parseInt(opp_def1.textContent.slice(4))}`
+                }
+            }
 
-    
+            if(opp_pokemon1.type=="normal"){
+                if(pokemon1.type=="rock"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)/2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="ghost"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)}`
+                }
+                else if(pokemon1.type=="steel"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)/2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else{
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4))+parseInt(def1.textContent.slice(4))}`
+                }
+            }
+            else if(opp_pokemon1.type=="fire"){
+                if(pokemon1.type=="fire"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)/2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="water"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)/2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="rock"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)/2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="dragon"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)/2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="grass"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)*2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="ice"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)*2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="bug"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)*2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="steel"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)*2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else{
+                        hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4))+parseInt(def1.textContent.slice(4))}`
+                }
+            }
+            else if(opp_pokemon1.type=="water"){
+                if(pokemon1.type=="water"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)/2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="grass"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)/2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="dragon"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)/2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="fire"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)*2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="ground"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)*2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="rock"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)*2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else{
+                        hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4))+parseInt(def1.textContent.slice(4))}`
+                }
+            }
+            else if(opp_pokemon1.type=="grass"){
+                if(pokemon1.type=="fire"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)/2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="grass"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)/2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="poison"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)/2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="flying"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)/2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="bug"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)/2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="dragon"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)/2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="steel"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)/2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="water"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)*2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="ground"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)*2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="rock"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)*2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else{
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4))+parseInt(def1.textContent.slice(4))}`
+                }
+            }
+            else if(opp_pokemon1.type=="electric"){
+                if(pokemon1.type=="grass"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)/2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="electric"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)/2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="dragon"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)/2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="water"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)*2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="flying"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)*2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="ground"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)}`
+                }
+                else{
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4))+parseInt(def1.textContent.slice(4))}`
+                }
+            }
+            else if(opp_pokemon1.type=="ice"){
+                if(pokemon1.type=="fire"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)/2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="water"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)/2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="ice"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)/2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="steel"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)/2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="grass"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)*2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="ground"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)*2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="flying"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)*2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="dragon"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)*2)+parseInt(def1.textContent.slice(4))}`
+                } 
+                else{
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4))+parseInt(def1.textContent.slice(4))}`
+                }
+            }
+            else if(opp_pokemon1.type=="fighting"){
+                if(pokemon1.type=="poison"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)/2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="flying"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)/2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="psychic"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)/2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="bug"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)/2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="fairy"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)/2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="normal"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)*2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="ice"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)*2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="rock"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)*2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="dark"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)*2)+parseInt(def1.textContent.slice(4))}`
+                } 
+                else if(pokemon1.type=="steel"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)*2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="ghost"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)}`
+                }
+                else{
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4))+parseInt(def1.textContent.slice(4))}`
+                }
+            }
+            else if(opp_pokemon1.type=="poison"){
+                if(pokemon1.type=="poison"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)/2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="ground"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)/2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="rock"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)/2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="ghost"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)/2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="grass"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)*2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="fairy"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)*2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="steel"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)}`
+                }
+                else{
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4))+parseInt(def1.textContent.slice(4))}`
+                }
+            }
+            else if(opp_pokemon1.type=="ground"){
+                if(pokemon1.type=="grass"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)/2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="bug"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)/2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="fire"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)*2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="electric"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)*2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="poison"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)*2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="rock"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)*2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="steel"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)*2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="flying"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)}`
+                }
+                else{
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4))+parseInt(def1.textContent.slice(4))}`
+                }
+            }
+            else if(opp_pokemon1.type=="flying"){
+                if(pokemon1.type=="electric"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)/2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="rock"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)/2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="steel"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)/2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="grass"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)*2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="fighting"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)*2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="bug"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)*2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else{
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4))+parseInt(def1.textContent.slice(4))}`
+                }
+            }
+            else if(opp_pokemon1.type=="psychic"){
+                if(pokemon1.type=="fighting"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)/2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="poison"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)/2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="psychic"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)*2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="steel"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)*2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="dark"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)}`
+                }
+                else{
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4))+parseInt(def1.textContent.slice(4))}`
+                }
+            }
+            else if(opp_pokemon1.type=="bug"){
+                if(pokemon1.type=="fire"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)/2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="fighting"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)/2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="poison"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)/2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="flying"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)/2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="ghost"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)/2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="steel"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)/2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="fairy"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)/2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="grass"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)*2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="dark"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)*2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="psychic"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)*2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else{
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4))+parseInt(def1.textContent.slice(4))}`
+                }
+            }
+            else if(opp_pokemon1.type=="rock"){
+                if(pokemon1.type=="fighting"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)/2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="ground"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)/2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="steel"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)/2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="bug"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)*2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="fire"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)*2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="ice"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)*2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="flying"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)*2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else{
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4))+parseInt(def1.textContent.slice(4))}`
+                }
+            }
+            else if(opp_pokemon1.type=="ghost"){
+                if(pokemon1.type=="dark"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)/2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="psychic"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)*2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="ghost"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)*2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="normal"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)}`
+                }
+                else{
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4))+parseInt(def1.textContent.slice(4))}`
+                }
+            }
+            else if(opp_pokemon1.type=="dragon"){
+                if(pokemon1.type=="steel"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)/2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="dragon"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)*2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="fairy"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)}`
+                }
+                else{
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4))+parseInt(def1.textContent.slice(4))}`
+                }
+            }
+            else if(opp_pokemon1.type=="dark"){
+                if(pokemon1.type=="fighting"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)/2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="dark"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)/2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="fairy"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)/2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="ghost"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)*2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="psychic"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)*2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else{
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4))+parseInt(def1.textContent.slice(4))}`
+                }
+            }
+            else if(opp_pokemon1.type=="steel"){
+                if(pokemon1.type=="fire"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)/2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="water"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)/2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="electric"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)/2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="steel"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)/2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="ice"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)*2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="rock"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)*2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="fairy"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)*2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else{
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4))+parseInt(def1.textContent.slice(4))}`
+                }
+            }
+            else if(opp_pokemon1.type=="fairy"){
+                if(pokemon1.type=="fire"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)/2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="poison"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)/2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="steel"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)/2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="fighting"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)*2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="dragon"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)*2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else if(pokemon1.type=="dark"){
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4)*2)+parseInt(def1.textContent.slice(4))}`
+                }
+                else{
+                    hp1.textContent=`HP:${hp1.textContent.slice(3)-(opp_atk1.textContent.slice(4))+parseInt(def1.textContent.slice(4))}`
+                }
+            }
+
+
+
+
+
+            if(opp_hp1.textContent.slice(3)<=0){
+                opp_stats1.style.background="red"
+                IsEnd(opp_stats1,opp_stats2,stats1,stats2)
+            }
+            if(hp1.textContent.slice(3)<=0){
+                stats1.style.background='red'
+                IsEnd(opp_stats1,opp_stats2,stats1,stats2)
+            }
+        }
+        
+        if(hp2.textContent.slice(3)>0 && opp_hp2.textContent.slice(3)>0){
+            if(pokemon2.type=="normal"){
+                if(opp_pokemon2.type=="rock"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)/2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="ghost"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)}`
+                }
+                else if(opp_pokemon2.type=="steel"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)/2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else{
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4))+parseInt(opp_def2.textContent.slice(4))}`
+                }
+            }
+            else if(pokemon2.type=="fire"){
+                if(opp_pokemon2.type=="fire"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)/2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="water"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)/2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="rock"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)/2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="dragon"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)/2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="grass"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)*2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="ice"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)*2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="bug"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)*2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="steel"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)*2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else{
+                        opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4))+parseInt(opp_def2.textContent.slice(4))}`
+                }
+            }
+            else if(pokemon2.type=="water"){
+                if(opp_pokemon2.type=="water"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)/2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="grass"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)/2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="dragon"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)/2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="fire"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)*2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="ground"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)*2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="rock"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)*2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else{
+                        opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4))+parseInt(opp_def2.textContent.slice(4))}`
+                }
+            }
+            else if(pokemon2.type=="grass"){
+                if(opp_pokemon2.type=="fire"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)/2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="grass"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)/2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="poison"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)/2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="flying"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)/2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="bug"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)/2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="dragon"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)/2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="steel"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)/2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="water"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)*2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="ground"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)*2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="rock"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)*2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else{
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4))+parseInt(opp_def2.textContent.slice(4))}`
+                }
+            }
+            else if(pokemon2.type=="electric"){
+                if(opp_pokemon2.type=="grass"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)/2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="electric"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)/2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="dragon"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)/2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="water"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)*2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="flying"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)*2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="ground"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)}`
+                }
+                else{
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4))+parseInt(opp_def2.textContent.slice(4))}`
+                }
+            }
+            else if(pokemon2.type=="ice"){
+                if(opp_pokemon2.type=="fire"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)/2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="water"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)/2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="ice"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)/2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="steel"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)/2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="grass"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)*2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="ground"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)*2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="flying"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)*2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="dragon"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)*2)+parseInt(opp_def2.textContent.slice(4))}`
+                } 
+                else{
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4))+parseInt(opp_def2.textContent.slice(4))}`
+                }
+            }
+            else if(pokemon2.type=="fighting"){
+                if(opp_pokemon2.type=="poison"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)/2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="flying"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)/2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="psychic"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)/2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="bug"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)/2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="fairy"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)/2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="normal"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)*2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="ice"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)*2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="rock"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)*2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="dark"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)*2)+parseInt(opp_def2.textContent.slice(4))}`
+                } 
+                else if(opp_pokemon2.type=="steel"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)*2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="ghost"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)}`
+                }
+                else{
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4))+parseInt(opp_def2.textContent.slice(4))}`
+                }
+            }
+            else if(pokemon2.type=="poison"){
+                if(opp_pokemon2.type=="poison"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)/2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="ground"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)/2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="rock"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)/2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="ghost"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)/2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="grass"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)*2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="fairy"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)*2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="steel"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)}`
+                }
+                else{
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4))+parseInt(opp_def2.textContent.slice(4))}`
+                }
+            }
+            else if(pokemon2.type=="ground"){
+                if(opp_pokemon2.type=="grass"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)/2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="bug"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)/2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="fire"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)*2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="electric"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)*2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="poison"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)*2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="rock"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)*2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="steel"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)*2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="flying"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)}`
+                }
+                else{
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4))+parseInt(opp_def2.textContent.slice(4))}`
+                }
+            }
+            else if(pokemon2.type=="flying"){
+                if(opp_pokemon2.type=="electric"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)/2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="rock"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)/2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="steel"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)/2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="grass"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)*2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="fighting"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)*2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="bug"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)*2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else{
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4))+parseInt(opp_def2.textContent.slice(4))}`
+                }
+            }
+            else if(pokemon2.type=="psychic"){
+                if(opp_pokemon2.type=="fighting"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)/2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="poison"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)/2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="psychic"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)*2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="steel"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)*2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="dark"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)}`
+                }
+                else{
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4))+parseInt(opp_def2.textContent.slice(4))}`
+                }
+            }
+            else if(pokemon2.type=="bug"){
+                if(opp_pokemon2.type=="fire"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)/2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="fighting"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)/2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="poison"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)/2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="flying"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)/2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="ghost"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)/2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="steel"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)/2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="fairy"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)/2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="grass"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)*2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="dark"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)*2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="psychic"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)*2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else{
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4))+parseInt(opp_def2.textContent.slice(4))}`
+                }
+            }
+            else if(pokemon2.type=="rock"){
+                if(opp_pokemon2.type=="fighting"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)/2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="ground"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)/2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="steel"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)/2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="bug"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)*2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="fire"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)*2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="ice"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)*2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="flying"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)*2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else{
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4))+parseInt(opp_def2.textContent.slice(4))}`
+                }
+            }
+            else if(pokemon2.type=="ghost"){
+                if(opp_pokemon2.type=="dark"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)/2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="psychic"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)*2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="ghost"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)*2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="normal"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)}`
+                }
+                else{
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4))+parseInt(opp_def2.textContent.slice(4))}`
+                }
+            }
+            else if(pokemon2.type=="dragon"){
+                if(opp_pokemon2.type=="steel"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)/2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="dragon"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)*2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="fairy"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)}`
+                }
+                else{
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4))+parseInt(opp_def2.textContent.slice(4))}`
+                }
+            }
+            else if(pokemon2.type=="dark"){
+                if(opp_pokemon2.type=="fighting"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)/2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="dark"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)/2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="fairy"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)/2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="ghost"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)*2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="psychic"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)*2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else{
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4))+parseInt(opp_def2.textContent.slice(4))}`
+                }
+            }
+            else if(pokemon2.type=="steel"){
+                if(opp_pokemon2.type=="fire"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)/2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="water"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)/2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="electric"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)/2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="steel"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)/2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="ice"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)*2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="rock"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)*2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="fairy"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)*2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else{
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4))+parseInt(opp_def2.textContent.slice(4))}`
+                }
+            }
+            else if(pokemon2.type=="fairy"){
+                if(opp_pokemon2.type=="fire"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)/2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="poison"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)/2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="steel"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)/2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="fighting"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)*2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="dragon"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)*2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else if(opp_pokemon2.type=="dark"){
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4)*2)+parseInt(opp_def2.textContent.slice(4))}`
+                }
+                else{
+                    opp_hp2.textContent=`HP:${opp_hp2.textContent.slice(3)-(atk2.textContent.slice(4))+parseInt(opp_def2.textContent.slice(4))}`
+                }
+            }
+
+            if(opp_pokemon2.type=="normal"){
+                if(pokemon2.type=="rock"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)/2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="ghost"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)}`
+                }
+                else if(pokemon2.type=="steel"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)/2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else{
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4))+parseInt(def2.textContent.slice(4))}`
+                }
+            }
+            else if(opp_pokemon2.type=="fire"){
+                if(pokemon2.type=="fire"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)/2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="water"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)/2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="rock"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)/2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="dragon"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)/2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="grass"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)*2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="ice"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)*2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="bug"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)*2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="steel"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)*2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else{
+                        hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4))+parseInt(def2.textContent.slice(4))}`
+                }
+            }
+            else if(opp_pokemon2.type=="water"){
+                if(pokemon2.type=="water"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)/2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="grass"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)/2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="dragon"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)/2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="fire"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)*2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="ground"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)*2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="rock"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)*2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else{
+                        hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4))+parseInt(def2.textContent.slice(4))}`
+                }
+            }
+            else if(opp_pokemon2.type=="grass"){
+                if(pokemon2.type=="fire"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)/2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="grass"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)/2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="poison"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)/2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="flying"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)/2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="bug"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)/2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="dragon"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)/2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="steel"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)/2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="water"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)*2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="ground"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)*2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="rock"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)*2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else{
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4))+parseInt(def2.textContent.slice(4))}`
+                }
+            }
+            else if(opp_pokemon2.type=="electric"){
+                if(pokemon2.type=="grass"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)/2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="electric"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)/2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="dragon"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)/2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="water"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)*2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="flying"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)*2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="ground"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)}`
+                }
+                else{
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4))+parseInt(def2.textContent.slice(4))}`
+                }
+            }
+            else if(opp_pokemon2.type=="ice"){
+                if(pokemon2.type=="fire"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)/2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="water"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)/2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="ice"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)/2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="steel"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)/2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="grass"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)*2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="ground"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)*2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="flying"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)*2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="dragon"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)*2)+parseInt(def2.textContent.slice(4))}`
+                } 
+                else{
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4))+parseInt(def2.textContent.slice(4))}`
+                }
+            }
+            else if(opp_pokemon2.type=="fighting"){
+                if(pokemon2.type=="poison"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)/2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="flying"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)/2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="psychic"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)/2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="bug"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)/2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="fairy"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)/2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="normal"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)*2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="ice"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)*2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="rock"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)*2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="dark"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)*2)+parseInt(def2.textContent.slice(4))}`
+                } 
+                else if(pokemon2.type=="steel"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)*2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="ghost"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)}`
+                }
+                else{
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4))+parseInt(def2.textContent.slice(4))}`
+                }
+            }
+            else if(opp_pokemon2.type=="poison"){
+                if(pokemon2.type=="poison"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)/2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="ground"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)/2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="rock"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)/2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="ghost"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)/2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="grass"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)*2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="fairy"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)*2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="steel"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)}`
+                }
+                else{
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4))+parseInt(def2.textContent.slice(4))}`
+                }
+            }
+            else if(opp_pokemon2.type=="ground"){
+                if(pokemon2.type=="grass"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)/2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="bug"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)/2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="fire"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)*2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="electric"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)*2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="poison"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)*2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="rock"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)*2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="steel"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)*2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="flying"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)}`
+                }
+                else{
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4))+parseInt(def2.textContent.slice(4))}`
+                }
+            }
+            else if(opp_pokemon2.type=="flying"){
+                if(pokemon2.type=="electric"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)/2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="rock"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)/2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="steel"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)/2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="grass"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)*2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="fighting"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)*2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="bug"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)*2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else{
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4))+parseInt(def2.textContent.slice(4))}`
+                }
+            }
+            else if(opp_pokemon2.type=="psychic"){
+                if(pokemon2.type=="fighting"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)/2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="poison"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)/2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="psychic"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)*2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="steel"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)*2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="dark"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)}`
+                }
+                else{
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4))+parseInt(def2.textContent.slice(4))}`
+                }
+            }
+            else if(opp_pokemon2.type=="bug"){
+                if(pokemon2.type=="fire"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)/2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="fighting"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)/2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="poison"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)/2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="flying"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)/2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="ghost"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)/2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="steel"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)/2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="fairy"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)/2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="grass"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)*2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="dark"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)*2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="psychic"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)*2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else{
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4))+parseInt(def2.textContent.slice(4))}`
+                }
+            }
+            else if(opp_pokemon2.type=="rock"){
+                if(pokemon2.type=="fighting"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)/2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="ground"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)/2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="steel"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)/2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="bug"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)*2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="fire"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)*2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="ice"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)*2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="flying"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)*2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else{
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4))+parseInt(def2.textContent.slice(4))}`
+                }
+            }
+            else if(opp_pokemon2.type=="ghost"){
+                if(pokemon2.type=="dark"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)/2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="psychic"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)*2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="ghost"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)*2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="normal"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)}`
+                }
+                else{
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4))+parseInt(def2.textContent.slice(4))}`
+                }
+            }
+            else if(opp_pokemon2.type=="dragon"){
+                if(pokemon2.type=="steel"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)/2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="dragon"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)*2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="fairy"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)}`
+                }
+                else{
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4))+parseInt(def2.textContent.slice(4))}`
+                }
+            }
+            else if(opp_pokemon2.type=="dark"){
+                if(pokemon2.type=="fighting"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)/2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="dark"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)/2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="fairy"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)/2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="ghost"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)*2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="psychic"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)*2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else{
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4))+parseInt(def2.textContent.slice(4))}`
+                }
+            }
+            else if(opp_pokemon2.type=="steel"){
+                if(pokemon2.type=="fire"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)/2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="water"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)/2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="electric"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)/2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="steel"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)/2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="ice"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)*2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="rock"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)*2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="fairy"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)*2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else{
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4))+parseInt(def2.textContent.slice(4))}`
+                }
+            }
+            else if(opp_pokemon2.type=="fairy"){
+                if(pokemon2.type=="fire"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)/2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="poison"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)/2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="steel"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)/2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="fighting"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)*2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="dragon"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)*2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else if(pokemon2.type=="dark"){
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4)*2)+parseInt(def2.textContent.slice(4))}`
+                }
+                else{
+                    hp2.textContent=`HP:${hp2.textContent.slice(3)-(opp_atk2.textContent.slice(4))+parseInt(def2.textContent.slice(4))}`
+                }
+            }
+            if(opp_hp2.textContent.slice(3)<=0){
+                opp_stats2.style.background="red"
+                IsEnd(opp_stats1,opp_stats2,stats1,stats2)
+            }
+            if(hp2.textContent.slice(3)<=0){
+                stats2.style.background='red'
+                IsEnd(opp_stats1,opp_stats2,stats1,stats2)
+            }
+        }
+    })
 })
 function indexfinder(pokemon_name){
     for (let i = 0; i < pokemons.length; i++) {
@@ -412,3 +2241,23 @@ function indexfinder(pokemon_name){
 function opp_pokemon_finder(){
     return pokemons[Math.floor(Math.random()*pokemons.length)]
 }
+const GameOvertxt=document.querySelector('h3')
+
+function IsEnd(opp_stats1,opp_stats2,stats1,stats2){
+    if(opp_stats1.style.background=="red" && opp_stats2.style.background=="red"){
+        pokemon_game.style.display="none"
+        document.querySelector('.game_over').style.display="flex"
+        GameOvertxt.textContent="Congratulations, You won!"
+    }
+    else if(stats1.style.background=="red" && stats2.style.background=="red"){
+        pokemon_game.style.display="none"
+        document.querySelector('.game_over').style.display="flex"
+        GameOvertxt.textContent="You Lose!"
+    }
+    else if((stats1.style.background=="red" && opp_stats2.style.background=="red") || (opp_stats1.style.background=="red" && stats2.style.background=="red")){
+        pokemon_game.style.display="none"
+        document.querySelector('.game_over').style.display="flex"
+        GameOvertxt.textContent="It's a Tie!!"
+    }
+}
+document.querySelector('.reply').addEventListener('click',()=>{window.location.reload()})
